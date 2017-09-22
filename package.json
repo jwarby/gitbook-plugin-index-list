@@ -1,0 +1,13 @@
+{
+  "name": "gitbook-plugin-index-list",
+  "version": "1.0.0",
+  "description": "Lists pages in the current chapter",
+  "main": "index.js",
+  "repository": "https://github.com/jwarby/gitbook-plugin-index-list",
+  "author": "James Warwood <warwood.aj@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "gitbook": ">1.x.x"
+  }
+}
