@@ -1,4 +1,5 @@
 const fs = require('fs')
+const jsonMark = require('jsonmark')
 const path = require('path')
 
 const ul = (items = []) => `
@@ -23,10 +24,17 @@ module.exports = {
           const s = path.basename(source)
 
           const listItems = files.filter(f => f !== s)
+            .filter(f => f.endsWith('.md'))
             .sort((a, b) => parseInt(a) - parseInt(b))
             .map(f => ({
-              text: f.match(/[0-9]-(.*?)\./)[1],
-              url: encodeURI(f.replace(/\.md$/, '.html'))
+              path: f,
+              markdown: jsonMark.parse(
+                fs.readFileSync(`${dir}/${f}`,{ encoding: 'utf8' })
+              ) || {}
+            }))
+            .map(({ path, markdown }) => ({
+              text: markdown.order ? markdown.order[0] : path.match(/[0-9]-(.*?)\./)[1],
+              url: encodeURI(path.replace(/\.md$/, '.html'))
             }))
 
           return ul(listItems)

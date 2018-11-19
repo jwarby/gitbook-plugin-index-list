@@ -9,5 +9,8 @@
   "private": true,
   "engines": {
     "gitbook": ">1.x.x"
+  },
+  "dependencies": {
+    "jsonmark": "^0.0.1"
   }
 }
